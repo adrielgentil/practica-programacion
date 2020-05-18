@@ -1,0 +1,46 @@
+# Introducción al Juego
+print('\nEste es el juego de las Historias Locas!\n')
+print('Completa los siguientes campos con una palabra para obtener tu historia: \n')
+# Declaracion de variable
+p1 = input('Parte del cuerpo plural: ')
+p2 = input('Adjetivo masculino plural: ')
+p3 = input('Adjetivo masculino: ')
+p4 = input('Adjetivo masculino: ')
+p5 = input('Lugar: ')
+p6 = input('Animal: ')
+p7 = input('Parte del cuerpo: ')
+p8 = input('Adjetivo: ')
+p9 = input('Adjetivo femenino plural: ')
+p10 = input('Advervio: ')
+p11 = input('Interjecció: ')
+p12 = input('Adjetivo femenino plural')
+p13 = input('Nombre propio: ')
+p14 = input('Adjetivo: ')
+print()
+
+
+print('¡Aca esta tu Historia Loca!.\n'.upper())
+#Impresion de la Historia
+print(f'Antiguamente, el ser humano caminaba a cuatro {p1.lower()},')
+print(f'se expresaba mediante gruñidos {p2.lower()} y no sabia encender')
+print(f'un {p3.lower()} fuego. Esta es la historia del dia en que la humanidad')
+print(f'cambio para siempre (traducida del {p4.lower()} idioma de las cavernas):')
+print('Hombre de las cavernas 1: En esta cueva hace mas frío que en (el/la)')
+print(f'{p5.lower()}. Incluso con la piel del/de la {p6.lower()} mas caliente no')
+print(f'consigo que mi {p7} deje de tiritar.')
+print('Hombre de las cavernas 2: Si al menos pudiesemos encontrar una')
+print(f'manera de que el frío fuera mas {p8.lower()}.')
+print('Hombre de las cavernas 1: Estoy aburrido. Creo que voy a jugar un')
+print(f'rato con estas ramas {p9.lower()}.')
+print(f'Hombre de la caverna 2: ¿Por qué no las frotas {p10.lower()} a ver')
+print('que pasa?')
+print(f'Hombre de las cavernas 1: ¡{p11.capitalize()}! Esta saliendo humo de')
+print(f'las {p12.lower()} ramas.')
+print('Hombre de la caverna 2: ¡Ay! ¡Está caliente! ¡Por el amor de')
+print(f'{p13.capitalize()}, hemos conseguido calor!')
+print('Hombre de las cavernas 1: A partir de ahora, llamaremos "fuego" a esta')
+print(f'{p14.capitalize()} magia.\n')
+
+# Saludo final
+print('¡Te esperamos para mas aventuras!'.upper())
+
