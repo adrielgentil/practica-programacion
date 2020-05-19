@@ -1,50 +1,46 @@
 import random
-
+import pickle
+from Clases import Pokemon as P
 
 def tirar_dado(valor):
     return random.randint(1, valor)
 
+class ListaPokemones:
+    listapoke = []
 
-class Pokemon:
-    def __init__(self, nombre, ataque, vida, tipo):
-        self.nombre = nombre
-        self.ataque = ataque
-        self.vida = vida
-        self.tipo = tipo
+    def __init__(self):
+        archivopoke = open('lista_pokemones', 'ab+')
+        archivopoke.seek(0)
 
-    def gano(self):
-        print(f'{self.nombre} ha ganado!!!\n')
+        try:
+            self.listapoke = pickle.load(archivopoke)
+            print('Tabla de resultados cargada exitosamente')
+        except EOFError:
+            print('No hay una tabla de resultados disponible')
+        finally:
+            archivopoke.close()
+            del archivopoke
+
+    def agregarPokemon(self, p):
+        self.listapoke.append(p)
+        self.guardarPokemones()
+
+    def guardarPokemones(self):
+        lista = open('lista_pokemones', "wb")
+        pickle.dump(self.listapoke, lista)
+        lista.close()
+        del lista
+
+    def mostrarPokemones(self):
+        for p in self.listapoke:
+            print(p)
 
 
-pokemones = []
-pokemones.append(Pokemon('Starmie', 15, 115, 'agua'))
-pokemones.append(Pokemon('Charmander', 17, 110, 'fuego'))
-pokemones.append(Pokemon('Bulbasaur', 13, 125, 'planta'))
-pokemones.append(Pokemon('Pikachu', 15, 110, 'electrico'))
+lista = ListaPokemones()
+
+lista.mostrarPokemones()
+
 turno = tirar_dado(2)
-
-
-def agregar_pokemon():
-    print('Que pokemon queres agregar?')
-    nombre = input('>').capitalize()
-    print('Cual es el ataque de tu pokemon?')
-    ataque = input('>')
-    print('Cual es la vida de tu pokemon?')
-    vida = input('>')
-    print('Cual es el tipo de tu pokemon?')
-    tipo = input('>').lower
-    pokemones.append(Pokemon(nombre, ataque, vida, tipo))
-
-while True:
-    print('\nHay algun pokemon que quieras agregar?')
-    op = input('>').lower()
-    while op != 'si' and op != 'no':
-        print('Respuesta invalida, por favor ingresa si o no:')
-        op = input('>').lower()
-    if op == 'si':
-        agregar_pokemon()
-    else:
-        break
 
 while True:
     pokemon1 = None
@@ -52,7 +48,7 @@ while True:
     print('\nJugador 1, ¿Qué pokemon quieres usar?')
     p1 = input('>').capitalize()
     while pokemon1 is None:
-        for pokemon in pokemones:
+        for pokemon in lista.listapoke:
             if p1 == pokemon.nombre:
                 pokemon1 = pokemon
         if pokemon1 is None:
@@ -64,7 +60,7 @@ while True:
         print('\nEse pokemon ya fue elegido, escoge otro por favor:')
         p2 = input('>').capitalize()
     while pokemon2 is None:
-        for pokemon in pokemones:
+        for pokemon in lista.listapoke:
             if p2 == pokemon.nombre:
                 pokemon2 = pokemon
         if pokemon2 is None:
@@ -104,9 +100,15 @@ while True:
     if vida_poke1 <= 0:
         print()
         pokemon2.gano()
+        pokemon2.victorias += 1
+        print(pokemon2)
+        lista.guardarPokemones()
     else:
         print()
         pokemon1.gano()
+        pokemon1.victorias += 1
+        print(pokemon1)
+        lista.guardarPokemones()
     print('Quieres jugar de nuevo?')
     respuesta = input('>').lower()
     while respuesta != 'si' and respuesta != 'no':
@@ -117,3 +119,5 @@ while True:
         break
     else:
         turno = tirar_dado(2)
+
+lista.mostrarPokemones()
