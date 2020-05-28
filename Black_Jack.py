@@ -209,18 +209,21 @@ while True:
         elif dealer.suma < jugador.suma:
             jugador_gana(billetera_jugador)
         else:
-            print('\nEs un empate!)
+            print('\nEs un empate!')
 
         print(f'La billetera del jugador tiene {billetera_jugador.total}')
         break
+        
+    if billetera_jugador.total <= 0:
+        print('Te has quedado sin fichas, gracias por jugar!')
+        break
+
     respuesta = input('Quieres seguir jugando?\n>').lower()
     while respuesta != 'si' and respuesta != 'no':
         respuesta = input('Respuesta invalida, ingresar si o no:>').lower()
     if respuesta == 'no':
         break
-    if billetera_jugador.total <= 0:
-        print('Te has quedado sin fichas, gracias por jugar!')
-        break
+
 
 
 
