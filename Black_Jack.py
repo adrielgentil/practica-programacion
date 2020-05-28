@@ -84,7 +84,7 @@ class Jugador:
     def sumar_carta(self, carta):
         self.cartas.append(carta)
         self.suma += valores[carta.rango]
-        if carta.rango == 'Ace':
+        if carta.rango.lower() == 'ace':
             self.aces += 1
 
     def opcion_ace(self):
@@ -213,16 +213,20 @@ while True:
 
         print(f'La billetera del jugador tiene {billetera_jugador.total}')
         break
-        
+
     if billetera_jugador.total <= 0:
         print('Te has quedado sin fichas, gracias por jugar!')
         break
 
-    respuesta = input('Quieres seguir jugando?\n>').lower()
+    respuesta = input('\nQuieres seguir jugando?\n>').lower()
     while respuesta != 'si' and respuesta != 'no':
-        respuesta = input('Respuesta invalida, ingresar si o no:>').lower()
+        respuesta = input('Respuesta invalida, ingresar si o no:\n>').lower()
     if respuesta == 'no':
+        print(f'Gracias por jugar, te llevas {billetera_jugador.total} fichas')
         break
+    elif respuesta == 'si':
+        print('Genial!')
+        print('\n-------- NUEVA RONDA ---------\n')
 
 
 
